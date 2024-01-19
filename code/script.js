@@ -42,7 +42,21 @@ const greetUser = () => {
   // "Hello there, what's your name?" for message, and the argument "bot" for sender
   showMessage("Hello there, what's your name?", 'bot')
   // Just to check it out, change 'bot' to 'user' here 👆 and see what happens
-}
+};
+
+const handleNameInput = (event) => {
+  event.preventFefault();
+    // Store the value in a variable so we can access it after we
+  // clear it from the input
+  const name = nameInput.value;
+  showMessage(name, "user");
+  nameInput.value = "";
+    // After 1 second, show the next question by invoking the next function.
+  // passing the name into it to have access to the user's name if we want
+  // to use it in the next question from the bot.
+  setTimeout(() => showFoodOptions(name), 1000);
+};
+
 
 // Eventlisteners goes here 👇
 
