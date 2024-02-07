@@ -144,9 +144,9 @@ const showFavWish = (choice) => {
 
 
 
-    const selectSeason = () => {
-      showMessage(`Now is time to choose your favourite season :)`, "bot");
-      inputWrapper.innerHTML = `
+const selectSeason = () => {
+  showMessage(`Now is time to choose your favourite season :)`, "bot");
+  inputWrapper.innerHTML = `
       <input type="radio" id="season" name="spring" value="HTML">
       <label for="html">spring</label><br>
       <input type="radio" id="season" name="summer" value="HTML">
@@ -156,53 +156,53 @@ const showFavWish = (choice) => {
       <input type="radio" id="season" name="winter" value="HTML">
       <label for="html">winter</label><br>
       `;
-      const seasonBtn = inputWrapper.querySelectorAll("#season");
-      seasonBtn.forEach(button => {
-        button.addEventListener("click", (event) => {
-          const selectedSeason = event.target.id;
-          showMessage(`${selectSeason}`, "user");
-          if (selectedSeason === "spring") {
-            showMessage(`Beautiful! ${selectSeason}`, "bot")
-          } else if (selectedSeason === "summer") {
-            showMessage(`Beautiful! ${selectSeason}`, "bot")
-          } else if (selectedSeason === "autumn") {
-            showMessage(`Beautiful! ${selectSeason}`, "bot")
-          } else if (selectedSeason === "winter") {
-            showMessage(`Beautiful! ${selectSeason}`, "bot")
-          } else {
-            showMessage(`choose one plz`, "bot");
-          }
-          setTimeout(() => {
-            showImagination(selectedSeason)
-          }, 1000)
-        })
-      })
-    }
+  const seasonBtn = inputWrapper.querySelectorAll("#season");
+  seasonBtn.forEach(button => {
+    button.addEventListener("click", (event) => {
+      const selectedSeason = event.target.id;
+      showMessage(`${selectedSeason}`, "user");
+      if (selectedSeason === "spring") {
+        showMessage(`Beautiful! ${selectedSeason}`, "bot")
+      } else if (selectedSeason === "summer") {
+        showMessage(`Beautiful! ${selectedSeason}`, "bot")
+      } else if (selectedSeason === "autumn") {
+        showMessage(`Beautiful! ${selectedSeason}`, "bot")
+      } else if (selectedSeason === "winter") {
+        showMessage(`Beautiful! ${selectedSeason}`, "bot")
+      } else {
+        showMessage(`choose one plz`, "bot");
+      }
+      setTimeout(() => {
+        showImagination(selectedSeason)
+      }, 1000)
+    })
+  })
+}
 
-    const showImagination = () => {
-      showMessage(`Let's put your imagination together!`, "bot")
-      inputWrapper.innerHTML = `
+const showImagination = () => {
+  showMessage(`Let's put your imagination together!`, "bot")
+  inputWrapper.innerHTML = `
   <button class="send-btn" id="no" type="submit">ew no!</button>
   <button class="send-btn" id="yes" type="submit">Yeeeeah!</button>
   `
-      const confirmButton = inputWrapper.querySelectorAll(".send-btn")
-      confirmButton.forEach(button => {
-        button.addEventListener("click", (event) => {
-          const choosenButton = event.target.id;
-          if (choosenButton === "yes") {
-            showMessage(`One day your imaniginations will come true!`, "bot");
-            inputWrapper.innerHTML = "";
-          } else {
-            showMessage(`No worries, one day you'll make sure that you want it to know <3`, "bot")
-            inputWrapper.innerHTML = "";
-          };
-        });
-      });
-    };
-    // Here we invoke the first function to get the chatbot to ask the first question when
-    // the website is loaded. Normally we invoke functions like this: greeting()
-    // To add a little delay to it, we can wrap it in a setTimeout (a built in JavaScript function):
-    // and pass along two arguments:
-    // 1.) the function we want to delay, and 2.) the delay in milliseconds 
-    // This means the greeting function will be called one second after the website is loaded.
-    setTimeout(greetUser, 1000)
+  const confirmButton = inputWrapper.querySelectorAll(".send-btn")
+  confirmButton.forEach(button => {
+    button.addEventListener("click", (event) => {
+      const choosenButton = event.target.id;
+      if (choosenButton === "yes") {
+        showMessage(`One day your imaniginations will come true!`, "bot");
+        inputWrapper.innerHTML = "";
+      } else {
+        showMessage(`No worries, one day you'll make sure that you want it to know <3`, "bot")
+        inputWrapper.innerHTML = "";
+      };
+    });
+  });
+};
+// Here we invoke the first function to get the chatbot to ask the first question when
+// the website is loaded. Normally we invoke functions like this: greeting()
+// To add a little delay to it, we can wrap it in a setTimeout (a built in JavaScript function):
+// and pass along two arguments:
+// 1.) the function we want to delay, and 2.) the delay in milliseconds 
+// This means the greeting function will be called one second after the website is loaded.
+setTimeout(greetUser, 1000)
