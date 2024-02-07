@@ -1,8 +1,8 @@
 // DOM selectors (variables that point to selected DOM elements) goes here 👇
-const chat = document.getElementById('chat');
-const nameInput = document.getElementById('name-input');
-const nameForm = document.getElementById('name-form');
-const inputWrapper = document.getElementById('input-wrapper');
+const chat = document.getElementById('chat')
+const nameInput = document.getElementById('name-input')
+const nameForm = document.getElementById('name-form')
+const inputWrapper = document.getElementById('input-wrapper')
 
 // Functions goes here 👇
 
@@ -11,7 +11,7 @@ const showMessage = (message, sender) => {
   // The if statement checks if the sender is the user and if that's the case it inserts
   // an HTML section inside the chat with the posted message from the user
   if (sender === 'user') {
-    console.log();
+    console.log()
     chat.innerHTML += `
       <section class="user-msg">
         <div class="bubble user-bubble">
@@ -19,11 +19,11 @@ const showMessage = (message, sender) => {
         </div>
         <img src="assets/user.png" alt="User" />  
       </section>
-    `;
+    `
     // The else if statement checks if the sender is the bot and if that's the case it inserts
     // an HTML section inside the chat with the posted message from the bot
   } else if (sender === 'bot') {
-    console.log(showMessage);
+    console.log(showMessage)
     chat.innerHTML += `
       <section class="bot-msg">
         <img src="assets/bot.png" alt="Bot" />
@@ -31,8 +31,8 @@ const showMessage = (message, sender) => {
           <p>${message}</p>
         </div>
       </section>
-    `;
-  };
+    `
+  }
 
   // This little thing makes the chat scroll to the last message when there are too many to
   // be shown in the chat box
@@ -45,37 +45,37 @@ const greetUser = () => {
   // "Hello there, what's your name?" for message, and the argument "bot" for sender
   showMessage("Hello there, what's your name?", 'bot')
   // Just to check it out, change 'bot' to 'user' here 👆 and see what happens
-};
+}
 
 const handleNameInput = (event) => {
-  event.preventDefault();
+  event.preventDefault()
   // Store the value in a variable so we can access it after we
   // clear it from the input
-  const name = nameInput.value;
+  const name = nameInput.value
 
   if (name !== "") {
-    showMessage(`Hii my name is ${name}`, "user");
-    nameInput.value = "";
+    showMessage(`Hii my name is ${name}`, "user")
+    nameInput.value = ""
     setTimeout(() => {
-      showFavColor(name);
-    }, 500);
+      showFavColor(name)
+    }, 500)
   } else {
-    showMessage(`Please enter something, to call me by your name`, "bot");
-  };
-  // showMessage(name, "user");
-  // nameInput.value = "";
+    showMessage(`Please enter something, to call me by your name`, "bot")
+  }
+  // showMessage(name, "user")
+  // nameInput.value = ""
 
   // After 1 second, show the next question by invoking the next function.
   // passing the name into it to have access to the user's name if we want
   // to use it in the next question from the bot.
-  // setTimeout(() => showFoodOptions(name), 1000);
-};
+  // setTimeout(() => showFoodOptions(name), 1000)
+}
 
-nameForm.addEventListener('submit', handleNameInput);
+nameForm.addEventListener('submit', handleNameInput)
 
 const showFavColor = (name) => {
 
-  showMessage(`Welcome ${name} :) What color do you prefer?`, "bot");
+  showMessage(`Welcome ${name} :) What color do you prefer?`, "bot")
   inputWrapper.innerHTML = `
   <button class="send-btn" id="magenta" type="submit">MAGENTA</button>
   <button class="send-btn" id="purple" type="submit">PURPLE</button>
@@ -84,21 +84,21 @@ const showFavColor = (name) => {
   const colorBtn = inputWrapper.querySelectorAll(".send-btn")
   colorBtn.forEach(button => {
     button.addEventListener("click", (event) => {
-      const selectedColor = event.target.id;
-      showMessage(`${selectedColor}`, "user");
-      showMessage(`What a beatiful color! Imagine a ${selectedColor} sky...`, "bot");
+      const selectedColor = event.target.id
+      showMessage(`${selectedColor}`, "user")
+      showMessage(`What a beatiful color! Imagine a ${selectedColor} sky...`, "bot")
       setTimeout(() => {
-        showFavWish(selectedColor);
-      }, 1000);
-    });
-  });
-};
+        showFavWish(selectedColor)
+      }, 1000)
+    })
+  })
+}
 
 const showFavWish = (choice) => {
   if (choice === "magenta") {
     showMessage(`What would you like to turn magenta?`, "bot")
     inputWrapper.innerHTML = `
-    <label for="choosen-color">make a whish -></label>
+    <label for="choosen-color">select</label>
     <select id="choosen-color" class="send-select">
     <option disabled selected value>click</option>
     <option value="snow">snow!</option>
@@ -129,17 +129,17 @@ const showFavWish = (choice) => {
     </select>
     `
   } else {
-    showMessage(`choose one plz`, "bot");
+    showMessage(`choose one plz`, "bot")
   }
-  const selectedWish = inputWrapper.querySelector("#choosen-color");
+  const selectedWish = inputWrapper.querySelector("#choosen-color")
   selectedWish.addEventListener("change", (event) => {
-    const selectedTypeOfWish = event.target.value;
-    showMessage(`${selectedTypeOfWish}`, "user");
-    showMessage(`What an imagination, ${selectedTypeOfWish} in that color!`, "bot");
+    const selectedTypeOfWish = event.target.value
+    showMessage(`${selectedTypeOfWish}`, "user")
+    showMessage(`What an imagination, ${selectedTypeOfWish} in that color!`, "bot")
     setTimeout(() => {
       selectSeason(selectedTypeOfWish)
-    }, 1000);
-  });
+    }, 1000)
+  })
 }
 
 
@@ -147,39 +147,32 @@ const showFavWish = (choice) => {
 const selectSeason = () => {
   showMessage(`Now is time to choose your favourite season :)`, "bot");
   inputWrapper.innerHTML = `
-      <input type="radio" id="season" name="spring" value="HTML">
-      <label for="html">spring</label><br>
-      <input type="radio" id="season" name="summer" value="HTML">
-      <label for="html">summer</label><br>
-      <input type="radio" id="season" name="<autmn>" value="HTML">
-      <label for="html">autumn</label><br>
-      <input type="radio" id="season" name="winter" value="HTML">
-      <label for="html">winter</label><br>
-      `;
-  const seasonBtn = inputWrapper.querySelectorAll("#season");
-  seasonBtn.forEach(button => {
-    button.addEventListener("click", (event) => {
-      const selectedSeason = event.target.id;
-      showMessage(`${selectedSeason}`, "user");
-      if (selectedSeason === "spring") {
-        showMessage(`Beautiful! ${selectedSeason}`, "bot")
-      } else if (selectedSeason === "summer") {
-        showMessage(`Beautiful! ${selectedSeason}`, "bot")
-      } else if (selectedSeason === "autumn") {
-        showMessage(`Beautiful! ${selectedSeason}`, "bot")
-      } else if (selectedSeason === "winter") {
-        showMessage(`Beautiful! ${selectedSeason}`, "bot")
-      } else {
-        showMessage(`choose one plz`, "bot");
-      }
-      setTimeout(() => {
-        showImagination(selectedSeason)
-      }, 1000)
-    })
-  })
-}
+  <div id="season">
+      <input type="radio" name="season" id="spring" value="spring">
+      <label for="spring">Spring</label><br>
+      <input type="radio" name="season" id="summer" value="summer">
+      <label for="summer">Summer</label><br>
+      <input type="radio" name="season" id="autumn" value="autumn">
+      <label for="autumn">Autumn</label><br>
+      <input type="radio" name="season" id="winter" value="winter">
+      <label for="winter">Winter</label><br>
+  </div>`;
 
-const showImagination = () => {
+  const seasonInputs = inputWrapper.querySelectorAll("#season input[type='radio']");
+  seasonInputs.forEach(input => {
+    input.addEventListener("click", (event) => {
+      const selectedSeason = event.target.value;
+      showMessage(`${selectedSeason}`, "user");
+      showMessage(`Beautiful! ${selectedSeason}`, "bot");
+
+      setTimeout(() => {
+        showImagination(selectedSeason);
+      }, 1000);
+    });
+  });
+};
+
+const showImagination = (selectedSeason, selectedTypeOfWish, selectedColor) => {
   showMessage(`Let's put your imagination together!`, "bot")
   inputWrapper.innerHTML = `
   <button class="send-btn" id="no" type="submit">ew no!</button>
@@ -188,17 +181,17 @@ const showImagination = () => {
   const confirmButton = inputWrapper.querySelectorAll(".send-btn")
   confirmButton.forEach(button => {
     button.addEventListener("click", (event) => {
-      const choosenButton = event.target.id;
-      if (choosenButton === "yes") {
-        showMessage(`One day your imaniginations will come true!`, "bot");
-        inputWrapper.innerHTML = "";
+      const chosenButton = event.target.id
+      if (chosenButton === "yes") {
+        showMessage(`One day your ${selectedSeason} will turn ${selectedTypeOfWish} in ${selectedColor}`, "bot")
+        inputWrapper.innerHTML = ""
       } else {
         showMessage(`No worries, one day you'll make sure that you want it to know <3`, "bot")
-        inputWrapper.innerHTML = "";
-      };
-    });
-  });
-};
+        inputWrapper.innerHTML = ""
+      }
+    })
+  })
+}
 // Here we invoke the first function to get the chatbot to ask the first question when
 // the website is loaded. Normally we invoke functions like this: greeting()
 // To add a little delay to it, we can wrap it in a setTimeout (a built in JavaScript function):
